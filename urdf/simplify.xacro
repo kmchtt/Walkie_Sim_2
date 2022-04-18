@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<robot name="simplify" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find simplify_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find simplify_description)/urdf/simplify.trans" />
+<xacro:include filename="$(find simplify_description)/urdf/simplify.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.10144261636054934 2.2323316203540828e-17 0.6142731365662268" rpy="0 0 0"/>
+    <mass value="281.6081321133351"/>
+    <inertia ixx="35.20815" iyy="36.281072" izz="5.893213" ixy="0.0" iyz="-0.0" ixz="3.251368"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://simplify_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="aluminum_satin"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://simplify_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_1">
+  <inertial>
+    <origin xyz="0.0 3.860015400081353e-17 0.022499999999999964" rpy="0 0 0"/>
+    <mass value="2.7320075113780233"/>
+    <inertia ixx="0.002169" iyy="0.002169" izz="0.003415" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.132 -0.0 -1.249369" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://simplify_description/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin xyz="0.132 -0.0 -1.249369" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://simplify_description/meshes/camera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid1" type="fixed">
+  <origin xyz="-0.132 0.0 1.249369" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_1"/>
+</joint>
+
+</robot>
